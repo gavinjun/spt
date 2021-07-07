@@ -14,6 +14,7 @@
         <module>spt-order</module>
         <module>generator</module>
         <module>spt-eureka</module>
+        <module>spt-order-facede</module>
     </modules>
 
     <properties>

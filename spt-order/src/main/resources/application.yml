@@ -18,6 +18,12 @@ spring:
       maximum-pool-size: 64
   jackson:
     property-naming-strategy: SNAKE_CASE
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    serialization:
+      write-dates-as-timestamps: false
+
+
   application:
     name: spt-order
 logging:

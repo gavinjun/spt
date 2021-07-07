@@ -5,3 +5,47 @@ eureka:
 spring:
   application:
     name: spt-user
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    serialization:
+      write-dates-as-timestamps: false
+
+feign:
+  hystrix:
+    enabled: true
+
+
+hystrix:
+  threadpool:
+    "spt-order":
+      coreSize: 3
+      allowMaximumSizeToDivergeFromCoreSize: true
+      maxQueueSize: 3
+      queueSizeRejectionThreshold: 3
+  command:
+    "FeignOrderService#queryOrder(Integer)":
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000
+
+ribbon:
+  ReadTimeout: 3000
+  ConnectTimeout: 3000
+  MaxAutoRetries: 0 #同一台实例最大重试次数,不包括首次调用
+  MaxAutoRetriesNextServer: 1 #重试负载均衡其他的实例最大重试次数,不包括首次调用
+  OkToRetryOnAllOperations: false #是否所有操作都重试
+
+
+logging:
+  level:
+    root: info
+    com.gavin.spt.user.service.FeignOrderService: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream,info,health
