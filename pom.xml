@@ -15,6 +15,7 @@
         <module>generator</module>
         <module>spt-eureka</module>
         <module>spt-order-facede</module>
+        <module>spt-jenkins-demo</module>
     </modules>
 
     <properties>
